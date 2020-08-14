@@ -1,0 +1,55 @@
+var everyDay = new Vue({
+    el:"#every_day",
+    data:{
+        content:"这是每日一句",
+    },
+    computed:{
+        getContent:function(){
+            return this.content;
+        }
+    },
+    created:function(){
+        //请求数据给content赋值
+        console.log("Vue")
+    }
+})
+var articleList = new Vue({
+    el:"#article_list",
+    data:{
+        articleList:[
+            {
+                title:"这是文章1标题",
+                content:"这是文章1内容",
+                date:"这是文章1创建时间",
+                views:"这是文章1浏览次数",
+                tags:"这是文章1标签",
+                id:"这是文章1索引",
+                link:"这是文章1链接",
+            },
+            {
+                title:"这是文章2标题",
+                content:"这是文章2内容",
+                date:"这是文章2创建时间",
+                views:"这是文章2浏览次数",
+                tags:"这是文章2标签",
+                id:"这是文章2索引",
+                link:"这是文章2链接",
+            },
+            {
+                title:"这是文章3标题",
+                content:"这是文章3内容",
+                date:"这是文章3创建时间",
+                views:"这是文章3浏览次数",
+                tags:"这是文章3标签",
+                id:"这是文章3索引",
+                link:"这是文章3链接",
+            }
+        ]
+    },
+    computed:{
+
+    },
+    created:function(){
+        //获取文章数据
+    }
+})

@@ -6,6 +6,7 @@
     <title>JX-Blog-mini</title>
     <link rel="stylesheet" href="./css/base.css">
     <link rel="stylesheet" href="./css/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
 </head>
 <body>
     <header class="header">
@@ -25,49 +26,45 @@
     </header>
     <div class="content">
         <div class="content_left">
-            <div class="every_day" id="every_day_id">
+            <div class="every_day" id="every_day">
                 <span>每日一句</span>
-                <p>aaaaaaaaaaaaaaaa</p>
+                <p v-html="getContent"></p>
             </div>
-            <div class="article_list">
-                <div class="article">
-                    <a href="/" class="article_title">这是文章标题</a>
-                    <p class="article_content">这是文章内容</p>
-                    <div class="article_foot">这是文章额外信息</div>
+            <div class="article_list" id="article_list">
+                <div class="article" v-for="article in articleList" :key="article.id">
+                    <a :href="article.link" class="article_title">{{article.title}}</a>
+                    <p class="article_content">{{article.content}}</p>
+                    <div class="article_foot">创建时间：{{article.date}}--浏览次数：{{article.views}}--标签：{{article.tags}}</div>
                 </div>
             </div>
         </div>
-        <div class="content_right">
-            <div class="right_module">
+        <div class="content_right" >
+            <div class="right_module" id="random_tags">
                 <div>随机标签名</div>
-                <a href="/">biaoqian1</a>
-                <a href="/">biaoqian2</a>
-                <a href="/">biaoqian3</a>
-                <a href="/">biaoqian4</a>
+                <a 
+                href="/" 
+                v-for="tag in tags"
+                :style="{
+                    color:randomColor(),
+                    fontSize:randomSize()}"
+                >{{tag}}</a>
             </div>
-            <div class="right_module">
+            <div class="right_module" id="new_hot">
                 <div>最近热门</div>
-                <a href="/">biaoqian1</a>
-                <a href="/">biaoqian2</a>
-                <a href="/">biaoqian3</a>
-                <a href="/">biaoqian4</a>
+                <a 
+                v-for="hot in titleList"
+                :href="hot.link"
+                >{{hot.title}}</a>
             </div>
-            <div class="right_module">
+            <div class="right_module" id="new_comment">
                 <div>最新评论</div>
-                <ul>
+                <ul v-for="temp in commentList">
                     <li>
                         <div>
-                            <span>这里是用户名</span>
-                            <span class="pull_right">这里是时间</span>
+                            <span>{{temp.name}}</span>
+                            <span class="pull_right">{{temp.date}}</span>
                         </div>
-                        <p>抱歉由于种种原因，本站不再链接xxx</p>
-                    </li>
-                    <li>
-                        <div>
-                            <span>这里是用户名</span>
-                            <span class="pull_right">这里是时间</span>
-                        </div>
-                        <p>抱歉由于种种原因，本站不再链接xxx</p>
+                        <p>{{temp.comment}}</p>
                     </li>
                 </ul>
             </div>
@@ -95,5 +92,7 @@
         <p>CopyICON@2020</p>
         <p>CopyICON@2020</p>
     </footer>
+    <script src="./js/index.js"></script>
+    <script src="./js/base.js"></script>
 </body>
 </html>
